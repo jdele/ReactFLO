@@ -3,15 +3,24 @@
   "version": "1.0",
   "description": "A dev tool that helps developers visualize the flow of state through their React app",
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
   "devtools_page": "devtools.html",
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": ["contentscript.js"]
-    }],
-  "web_accessible_resources": [
-    "inject.js"
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentscript.js"
+      ]
+    }
   ],
-  "manifest_version": 2 
+  "web_accessible_resources": [
+    "inject.js",
+    "contentscript.js"
+  ],
+  "manifest_version": 2
 }

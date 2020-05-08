@@ -1,3 +1,5 @@
+import { initialHook } from './backend/initialHook';
+
 // Test code
 const injectedStuff = document.createElement('h1');
 injectedStuff.innerText = 'Ya got hacked nerd!';
@@ -16,12 +18,12 @@ const sendMessage = (message) => {
 }
 
 // Function will attach script to the dom 
-const injectScript =  (file, tag) => {
+const injectScript = (file, tag) => {
   const htmlBody = document.getElementsByTagName(tag)[0];
   const script = document.createElement('script');
   script.setAttribute('type', 'text/javascript');
   script.setAttribute('src', file);
-  htmlBody.appendChild(script); 
+  htmlBody.appendChild(script);
 }
 
 // Listening for message from injected script - inject.js
@@ -32,7 +34,10 @@ window.addEventListener('message', e => {
 });
 
 // Injects the script into the dom
-injectScript(chrome.runtime.getURL('/inject.js'), 'body');
+// injectScript(chrome.runtime.getURL('/inject.js'), 'body');
 
 // Test message:
-sendMessage({ message: 'Hello from Content Scripts' });
+// sendMessage({ message: 'Hello from Content Scripts' });
+
+// Patch in custom code to React dev tools
+initialHook();
